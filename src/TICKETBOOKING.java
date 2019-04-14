@@ -2,6 +2,7 @@ import java.util.Properties;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.remote.CapabilityType;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,18 +15,22 @@ public class TICKETBOOKING {
 		Properties prop = new Properties();
 		InputStream is = new FileInputStream("C:/Users/AKSHAY/workspace/IRCTC/src/resources/config.properties");
 		prop.load(is);
+		ChromeOptions option = new ChromeOptions();
+		option.addArguments("--disable-notifications");
+		option.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+		option.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 		System.setProperty(prop.getProperty("setpropertyname"), prop.getProperty("setpropertyvalue"));
-		driver = new ChromeDriver();
-		driver.get(prop.getProperty("url"));
+		driver = new ChromeDriver(option);
 		driver.manage().window().maximize();
-		Thread.sleep(3000);
+		driver.get(prop.getProperty("url"));
 		
 		// Clicking Login link
-		driver.findElement(By.xpath("/html/body/app-root/app-home/app-header/div[2]/div[2]/div[1]/a[1]")).click();
+		driver.findElement(By.id("loginText")).click();
+		Thread.sleep(10000);
 		
 		// Entering username and password
-		driver.findElement(By.id("userId")).sendKeys("t_akshay");
-		driver.findElement(By.id("pwd")).sendKeys("txp160");
+		driver.findElement(By.id("userId")).sendKeys(prop.getProperty("username"));
+		driver.findElement(By.id("pwd")).sendKeys(prop.getProperty("password"));
 		
 		//waiting for 10 seconds to enter Captcha
 		Thread.sleep(10000);
