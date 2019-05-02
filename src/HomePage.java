@@ -8,16 +8,16 @@ public class HomePage extends Base{
 		super(driver);
 	}
 	
-	@FindBy(xpath="//*[@id='origin']/span/input")
+	@FindBy(css="p-autocomplete#origin>span>input")
 	private WebElement from;
 	
-	@FindBy(xpath="//*[@id='destination']/span/input")
+	@FindBy(css="p-autocomplete#destination>span>input")
 	private WebElement to;
 	
-	@FindBy(xpath="//*[@id='divMain']/div/app-main-page/div[2]/div/div[1]/div/div/div[1]/div/app-jp-input/div[3]/form/div[3]/p-calendar/span/input")
+	@FindBy(css="input.ng-tns-c14-6.ui-inputtext.ui-widget.ui-state-default.ui-corner-all.ng-star-inserted")
 	private WebElement date;
 	
-	@FindBy(xpath="//*[@id='journeyClass']/div/label")
+	@FindBy(css="div.ui-dropdown-trigger.ui-state-default.ui-corner-right")
 	private WebElement classtype;
 	
 	@FindBy(xpath="//*[@id='journeyClass']/div/div[4]/div/ul/li[7]/span")
